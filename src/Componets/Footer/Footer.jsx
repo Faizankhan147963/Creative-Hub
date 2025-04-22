@@ -1,167 +1,173 @@
-import React from "react"
-const Footer = () => {
-  const services = [
-    "Managed IT",
-    "IT Support",
-    "IT Consultancy",
-    "Cloud Computing",
-    "Cyber Security",
-    "Custom Software",
-  ]
+"use client"
 
-  const latestPosts = [
-    {
-      date: "May 8, 2020",
-      title: "Make the decision to move forward. Commit your decision to paper.",
-    },
-    {
-      date: "May 8, 2020",
-      title: "So why do we do it? For the most part, we don't do it intentionally or with malice.",
-    },
-  ]
+import React from "react"
+
+import { useState } from "react"
+import { Link } from "react-router-dom"
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+export default function Footer() {
+  const [email, setEmail] = useState("")
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // Handle newsletter signup
+    console.log("Newsletter signup:", email)
+  }
+
+  const socialIcons = {
+    facebook: <FaFacebookF className="w-5 h-5 text-blue-600" />,
+    instagram: <FaInstagram className="w-5 h-5 text-pink-500" />,
+    linkedin: <FaLinkedinIn className="w-5 h-5 text-blue-700" />,
+    twitter: <FaTwitter className="w-5 h-5 text-blue-400" />,
+  };
 
   return (
-    <div className=" bg-gray-100 ">
-     
+    <footer className="bg-gradient-to-b from-black to-[#001a0f] text-white px-4 py-16 md:px-6">
+      {/* Main Heading */}
+      <div className="container mx-auto mb-16">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <h2 className="text-4xl md:text-6xl font-bold tracking-wider">LET&apos;S BRING YOUR IDEAS TO LIFE!</h2>
+          <button className="bg-[#7FFF00]  text-black px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
+            BRING IT ON!
+          </button>
+        </div>
+      </div>
 
-      {/* Footer Content */}
-      <footer className="border-t border-gray-200 ">
-        <div className="mx-auto container  py-12   px-4">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {/* Company Info */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-full bg-black" />
-                <span className="text-xl font-bold">TECH CAREER</span>
-              </div>
-              <p className="text-gray-600">
-                One of the main areas that I work on with my clients is shedding these non-supportive beliefs and
-                replacing them with beliefs that will help them to accomplish their desires.
+      {/* Main Content Grid */}
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
+        {/* UAE Section */}
+        <div>
+          <h3 className="text-2xl font-bold mb-6">HEADQUARTERS - UAE</h3>
+          <div className="space-y-4">
+            <div>
+              <p className="text-gray-400 mb-2">Location:</p>
+              <p className="leading-relaxed">
+                Burjuman Business Tower, 9th Floor - Office No 900, Sheikh Khalifa Bin Zayed, St - Al Mankhool - Dubai,
+                UAE.
               </p>
-              <div className="space-y-1 text-gray-600">
-                <p>Mon-Fri: 9:00 am - 07:30 pm</p>
-                <p>Sat: 09:00 am - 01:00 pm</p>
-              </div>
-              <div className="flex gap-4">
-                {["facebook", "twitter", "linkedin", "pinterest", "instagram"].map((social) => (
-                  <a key={social} href={`#${social}`} className="text-gray-400 transition-colors hover:text-black">
-                    <span className="sr-only">{social}</span>
-                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                      {social === "facebook" && (
-                        <path d="M9 8H6v4h3v12h5V12h3.6l.4-4h-4V6.3c0-1 .2-1.3 1.1-1.3H18V0h-3.8C10.6 0 9 1.6 9 4.6V8z" />
-                      )}
-                      {/* Add other social icons paths here */}
-                    </svg>
-                  </a>
-                ))}
-              </div>
             </div>
-
-            {/* Contact Info */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Contact Us</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-2">
-                  <svg className="mt-1 h-5 w-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                  <div>
-  <p className="font-medium">Address</p>
-  <p className="text-gray-600">Ahmedabad, Gujarat, India</p>
-</div>
-
-                </div>
-                <div className="flex items-start gap-2">
-                  <svg className="mt-1 h-5 w-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                  <div>
-                    <p className="font-medium">Email</p>
-                    <p className="text-gray-600">faizankhan@techcareer.com</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <svg className="mt-1 h-5 w-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                    />
-                  </svg>
-                  <div>
-                    <p className="font-medium">Call Now</p>
-                    <p className="text-gray-600">+91 80000 52438</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* IT Services */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">IT Service</h3>
-              <ul className="space-y-2">
-                {services.map((service) => (
-                  <li key={service}>
-                    <a href="#" className="text-gray-600 hover:text-black">
-                      {service}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Latest Posts */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Latest Posts</h3>
-              <div className="space-y-4">
-                {latestPosts.map((post, index) => (
-                  <div key={index} className="space-y-1">
-                    <p className="text-black">{post.date}</p>
-                    <a href="#" className="block text-gray-600 hover:text-black">
-                      {post.title}
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-gray-200 pt-8">
-            <div className="flex flex-wrap items-center gap-4">
-              <button className="text-gray-600 hover:text-black">Subscribe</button>
-              <button className="text-gray-600 hover:text-black">View on Google Map</button>
-            </div>
-            <p className="text-gray-600">
-              Copyright © 2020. All Rights Reserved. TECH CAREER by{" "}
-              <a href="#" className="text-black hover:underline">
-                Faizan Khan
+            <div>
+              <p className="text-gray-400 mb-2">Email:</p>
+              <a href="mailto:info@techcareer.in" className="hover:text-[#7FFF00] transition-colors">
+                info@techcareer.in
               </a>
-              .
-            </p>
+            </div>
+            <div>
+              <p className="text-gray-400 mb-2">Phone:</p>
+              <a href="tel:+97152946777" className="hover:text-[#7FFF00] transition-colors">
+                +971 52946777
+              </a>
+            </div>
           </div>
         </div>
-      </footer>
+
+        {/* India Section */}
+        <div>
+          <h3 className="text-2xl font-bold mb-6">DEVELOPMENT CENTRE - INDIA</h3>
+          <div className="space-y-4">
+            <div>
+              <p className="text-gray-400 mb-2">Location</p>
+              <p className="leading-relaxed">
+                A-315, 3rd Floor, Sakar-7 Nehru Bridge, Corner, Ashram Rd, Ahmedabad, Gujarat 380009
+              </p>
+            </div>
+            <div>
+              <p className="text-gray-400 mb-2">Phone:</p>
+              <div className="space-y-1">
+                <a href="tel:+919819915555" className="block hover:text-[#7FFF00] transition-colors">
+                  +91 98199 15555
+                </a>
+                <a href="tel:+919772544444" className="block hover:text-[#7FFF00] transition-colors">
+                  +91 97725 44444
+                </a>
+              </div>
+            </div>
+            <button className="bg-[#7FFF00]  text-black  px-6 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
+              EXPLORE CAREER OPPORTUNITIES!
+            </button>
+          </div>
+        </div>
+
+        {/* Newsletter Section */}
+        <div>
+          <h3 className="text-2xl font-bold mb-6">STAY IN THE LOOP!</h3>
+          <p className="mb-6">Sign up for our newsletter for updates and offers.</p>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="relative">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email Address"
+                className="w-full bg-black/30 border border-gray-700 rounded-full px-4 py-3 focus:outline-none focus:border-emerald-400"
+                required
+              />
+              <button
+                type="submit"
+                className="absolute right-1 top-2 bg-[#7FFF00] p-2 rounded-full hover:bg-emerald-500 transition-colors"
+              >
+                <svg
+                  className="w-5 h-5 text-black"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </button>
+            </div>
+            <div className="flex items-start gap-2">
+              <input type="checkbox" id="terms" className="mt-1.5" required />
+              <label htmlFor="terms" className="text-sm">
+                I Agree With The{" "}
+                <Link href="#" className="text-blue-400 hover:underline">
+                  Terms And Conditions
+                </Link>
+              </label>
+            </div>
+          </form>
+
+          <div className="mt-8">
+            <h4 className="text-xl font-bold mb-4">NEED ASSISTANCE?</h4>
+            <p className="mb-2">For Support, Reach Out To Us At</p>
+            <a href="mailto:support@techcareer.in" className="text-[#7FFF00] hover:underline">
+              support@techcareer.in
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Social Links */}
+      <div className="container mx-auto mb-8">
+      <h4 className="text-xl mb-4">Follow Us On</h4>
+      <div className="flex gap-4">
+        {Object.entries(socialIcons).map(([name, icon]) => (
+          <Link
+            key={name}
+            href="#"
+            className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:opacity-80 transition-opacity shadow-md"
+          >
+            <span className="sr-only">{name}</span>
+            {icon}
+          </Link>
+        ))}
+      </div>
     </div>
+
+      {/* Footer Bottom */}
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+        <p>© 2025, All Rights Reserved.</p>
+        <div className="flex gap-6 mt-4 md:mt-0">
+          <Link href="#" className="hover:text-white transition-colors">
+            Terms and Conditions
+          </Link>
+          <Link href="#" className="hover:text-white transition-colors">
+            Privacy Policy
+          </Link>
+        </div>
+      </div>
+    </footer>
   )
 }
-
-export default Footer
 

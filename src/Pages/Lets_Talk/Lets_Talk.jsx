@@ -1,16 +1,63 @@
-import React from "react"
+import React, { useState } from "react";
+import axios from "axios";
+
 const Lets_Talk = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [responseMessage, setResponseMessage] = useState("");
+
+  // Handle input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setResponseMessage("");
+
+    try {
+      const response = await axios.post(
+        "https://contact-us-form-backend.onrender.com/api/send-email",
+        formData
+      );
+
+      if (response.data.success) {
+        setResponseMessage("Message sent successfully! ✅");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setResponseMessage("Failed to send message. ❌");
+      }
+    } catch (error) {
+      setResponseMessage("Error sending message. Please try again later.");
+      console.error("Error:", error);
+    }
+
+    setLoading(false);
+  };
+
   return (
     <div className="min-h-screen bg-white container mx-auto md:px-0 px-4 py-16">
-
-
       {/* Header Section */}
       <div className="text-center max-w-3xl mx-auto mb-16">
-        <h2 className="text-sm  tracking-wider mb-4 text-gray-600">LET'S TALK</h2>
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">Send Us Your <span className="inline-block rounded-full bg-[#7FFF00] px-6 py-2">Feedback</span></h1>
+        <h2 className="text-sm tracking-wider mb-4 text-gray-600">LET'S TALK</h2>
+        <h1 className="text-4xl md:text-6xl font-bold mb-6">
+          Send Us Your{" "}
+          <span className="inline-block rounded-full bg-[#7FFF00] px-6 py-2">
+            Feedback
+          </span>
+        </h1>
         <p className="text-gray-600">
-          Nullam condimentum leo id elit sagittis auctor. Curabitur elementum nunc a leo imperdiet elementum diam. Etiam
-          elementum euismod commodo.
+          Nullam condimentum leo id elit sagittis auctor. Curabitur elementum
+          nunc a leo imperdiet elementum diam. Etiam elementum euismod commodo.
         </p>
       </div>
 
@@ -26,13 +73,17 @@ const Lets_Talk = () => {
         </div>
 
         {/* Form Section */}
-        <div className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <label className="block">
               <span className="text-gray-700">First & Last Name</span>
               <input
                 type="text"
+                name="name"
                 placeholder="Enter your name"
+                value={formData.name}
+                onChange={handleChange}
+                required
                 className="p-5 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#7BFF00] focus:ring-2 focus:ring-[#7BFF00] focus:ring-opacity-75"
               />
             </label>
@@ -41,77 +92,75 @@ const Lets_Talk = () => {
               <span className="text-gray-700">Email address</span>
               <input
                 type="email"
+                name="email"
                 placeholder="name@example.com"
+                value={formData.email}
+                onChange={handleChange}
+                required
                 className="p-5 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#7BFF00] focus:ring-2 focus:ring-[#7BFF00] focus:ring-opacity-75"
               />
             </label>
 
             <label className="block">
               <span className="text-gray-700">Subject</span>
-              <input
-                type="text"
-                placeholder="Enter your subject"
+              <select
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
                 className="p-5 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#7BFF00] focus:ring-2 focus:ring-[#7BFF00] focus:ring-opacity-75"
-              />
+              >
+                <option value="" disabled>
+                  -- Select IT Service --
+                </option>
+                <option value="web-development">Web Development</option>
+                <option value="app-development">App Development</option>
+                <option value="seo-services">SEO Services</option>
+                <option value="cloud-computing">Cloud Computing</option>
+                <option value="cyber-security">Cyber Security</option>
+                <option value="it-consulting">IT Consulting</option>
+                <option value="custom-software">Custom or Other</option>
+              </select>
             </label>
 
             <label className="block">
               <span className="text-gray-700">Comment or Message *</span>
               <textarea
+                name="message"
                 rows={6}
                 placeholder="Enter your comment"
+                value={formData.message}
+                onChange={handleChange}
+                required
                 className="p-5 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#7BFF00] focus:ring-2 focus:ring-[#7BFF00] focus:ring-opacity-75"
               />
             </label>
           </div>
 
-          <button className="px-8 py-4 bg-[#7BFF00] rounded-full font-bold hover:bg-[#6CE600] transition-colors cursor-pointer focus:outline-none focus:ring-4 focus:ring-[#7BFF00] focus:ring-opacity-75">
-            Send Message
+          <button
+            type="submit"
+            disabled={loading}
+            className="px-8 py-4 bg-[#7BFF00] rounded-full font-bold hover:bg-[#6CE600] transition-colors cursor-pointer focus:outline-none focus:ring-4 focus:ring-[#7BFF00] focus:ring-opacity-75"
+          >
+            {loading ? "Sending..." : "Send Message"}
           </button>
-        </div>
 
-      </div>
-
-      {/* Bottom Section */}
-      <div className="container px-4 mx-auto grid md:grid-cols-2 gap-12 items-center mb-10">
-        <div className="space-y-6">
-          <h2 className="text-4xl font-bold">Ready to Start?</h2>
-          <p className="text-gray-600">
-            Integer at faucibus urna. Nullam condimentum leo id elit sagittis auctor. Curabitur elementum nunc a leo
-            imperdiet, nec elementum diam elementum. Etiam elementum euismod commodo. Proin eleifend eget quam ut
-            efficitur.
-          </p>
-          <p className="font-medium">
-            Limited Offer - all plans are <span className="font-bold">FREE</span> for 14 days!
-          </p>
-        </div>
-
-        <div className="bg-gray-50 rounded-3xl p-8 text-center space-y-6">
-          <div className="text-5xl font-bold">
-            $29 <span className="text-2xl text-gray-600">per month</span>
-          </div>
-          <ul className="space-y-4">
-            <li className="flex items-center justify-center">
-              <svg className="w-5 h-5 text-[#7BFF00] mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-              </svg>
-              <span>Up to 5 Users</span>
-            </li>
-            <li className="flex items-center justify-center">
-              <svg className="w-5 h-5 text-[#7BFF00] mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-              </svg>
-              <span>Full Statistic</span>
-            </li>
-          </ul>
-          <button className="px-8 py-4 bg-[#7BFF00] rounded-full font-bold hover:bg-[#6CE600] transition-colors w-full">
-            PURCHASE
-          </button>
-        </div>
+          {/* Success/Error Message */}
+          {responseMessage && (
+            <p
+              className={`mt-4 font-semibold ${
+                responseMessage.includes("success")
+                  ? "text-green-600"
+                  : "text-red-600"
+              }`}
+            >
+              {responseMessage}
+            </p>
+          )}
+        </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Lets_Talk
-
+export default Lets_Talk;

@@ -171,24 +171,24 @@ const Service_Details_Page = () => {
   const service = serviceData[name] || {};
 
   return (
-    <div className="min-h-screen bg-gradient-to-t from-[#7FFF00] py-16">
+    <div className="min-h-screen bg-gradient-to-t from-[#7FFF00] md:py-16 py-6">
       <div className="container mx-auto py-12 lg:py-8 md:px-0 px-4">
         <div className="grid lg:grid-cols-1 gap-12 items-center">
           <div>
-            <h1 className="text-4xl lg:text-6xl font-bold text-black mb-8">{name}</h1>
+            <h1 className="text-2xl lg:text-6xl font-bold text-black md:mb-8 mb-0">{name}</h1>
           </div>
         </div>
       </div>
 
       <section className="container mx-auto md:px-0 px-4 pb-10">
-        <h2 className="text-3xl font-bold mb-6 text-black">Overview</h2>
+        <h2 className="md:text-3xl text-2xl font-bold mb-6 text-black">Overview</h2>
         <div className="max-w-6xl text-left space-y-6 text-gray-900">
           <p>{service.overview || "Service details will be updated soon with relevant information and insights."}</p>
         </div>
       </section>
 
       <section className="container mx-auto md:px-0 px-4 mb-10">
-        <h2 className="text-3xl font-bold mb-12 text-black">Key Benefits</h2>
+        <h2 className="font-bold md:mb-12 mb-6 text-black md:text-3xl text-2xl " >Key Benefits</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {service.benefits ? service.benefits.map((benefit, index) => (
             <div key={index} className="border bg-white p-3 rounded-xl shadow-sm hover:shadow-md transition-shadow">

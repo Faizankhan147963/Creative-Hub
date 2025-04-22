@@ -11,16 +11,6 @@ import eagleyessecuritybig from '../../assets/eagleyessecuritybig.png';
 
 const portfolioItems = [
   {
-    id: 1,
-    name: "Career Connect",
-    description: "A cutting-edge job portal that bridges the gap between job seekers and recruiters, providing a seamless hiring experience with advanced search and application features.",
-    image: careerconnect,
-    bigimage: careerconnectbig,
-    instagram: "#",
-    twitter: "#",
-    phone: "tel:+123456789",
-  },
-  {
     id: 2,
     name: "Learning Craft",
     description: "An innovative online learning platform offering a diverse range of courses, empowering individuals with skills and knowledge through interactive and engaging content",
@@ -30,6 +20,17 @@ const portfolioItems = [
     twitter: "#",
     phone: "tel:+123456789",
   },
+  {
+    id: 1,
+    name: "Career Connect",
+    description: "A cutting-edge job portal that bridges the gap between job seekers and recruiters, providing a seamless hiring experience with advanced search and application features.",
+    image: careerconnect,
+    bigimage: careerconnectbig,
+    instagram: "#",
+    twitter: "#",
+    phone: "tel:+123456789",
+  },
+
   {
     id: 3,
     name: "Electro Hub",
